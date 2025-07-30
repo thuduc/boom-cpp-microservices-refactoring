@@ -1,0 +1,119 @@
+version: '3.8'
+
+services:
+  rng-service:
+    build:
+      context: ./rng-service
+      dockerfile: Dockerfile
+    container_name: boom-rng-service
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    networks:
+      - boom-network
+
+  linalg-service:
+    build:
+      context: ./linalg-service
+      dockerfile: Dockerfile
+    container_name: boom-linalg-service
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    networks:
+      - boom-network
+
+  optimization-service:
+    build:
+      context: ./optimization-service
+      dockerfile: Dockerfile
+    container_name: boom-optimization-service
+    ports:
+      - "8082:8082"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    networks:
+      - boom-network
+
+  mcmc-service:
+    build:
+      context: ./mcmc-service
+      dockerfile: Dockerfile
+    container_name: boom-mcmc-service
+    ports:
+      - "8083:8083"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8083/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    networks:
+      - boom-network
+
+  statistical-models-service:
+    build:
+      context: ./statistical-models-service
+      dockerfile: Dockerfile
+    container_name: boom-statistical-models-service
+    ports:
+      - "8084:8084"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8084/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    networks:
+      - boom-network
+
+  glm-service:
+    build:
+      context: ./glm-service
+      dockerfile: Dockerfile
+    container_name: boom-glm-service
+    ports:
+      - "8085:8085"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8085/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    networks:
+      - boom-network
+
+  # API Gateway (nginx) - to be implemented
+  # api-gateway:
+  #   image: nginx:alpine
+  #   container_name: boom-api-gateway
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #   depends_on:
+  #     - rng-service
+  #     - linalg-service
+  #     - optimization-service
+  #     - mcmc-service
+  #   networks:
+  #     - boom-network
+
+networks:
+  boom-network:
+    driver: bridge
+    name: boom-microservices-network
