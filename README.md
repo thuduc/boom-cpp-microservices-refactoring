@@ -1,14 +1,42 @@
-# Proof-of-concept: C++ to Python migration using Claude Code
-BOOM (C++ library for Bayesian modeling) source repo is located at https://github.com/steve-the-bayesian/BOOM
+## GenAI Proof of Concept: refactor existing C++ codebase into microservices
 
-This POC is to evaluate Claude Code (an agentic coding tool from Anthropic: https://www.anthropic.com/claude-code) for its ability to convert a modeling library written in C++ to Python.
+The purpose of this proof of concept is to find out if an LLM can take an existing complex codebase and refactor it into microservices. The codebase we will be using is the BOOM C++ library for Bayesian modeling: https://github.com/steve-the-bayesian/BOOM
 
-#### Conversion Process: 
-* Step 1 - use a reasoning LLM that's able to analyze an existing code repository, then put together a comprehensive migration plan for converting the entire project's codebase from C++ to Python. We used Anthropic's Claude Opus 4 LLM for our reasoning LLM. We chose Opus 4 over OpenAI's ChatGPT o3 (advanded reasoning) and Google Gemini 2.5 Pro (reasoning) due to its advanced ability to analyze code. 
-* Step 2 - use this migration plan (see migration_plan.md) with Claude Code (together with Claude Opus 4 LLM, known as the most advanded model for agentic coding tasks) to implement all tasks in all phases defined in the migration plan. The migration plan includes requirements for comprehensive code coverage via unit and integration testing.
+### LLM & AI Tool
+* LLM used: Claude Opus 4 (best coding LLM) - https://www.anthropic.com/claude/opus
+* AI tool used: Claude Code (best coding CLI due to its integration with Clause 4 LLMs) - https://www.anthropic.com/claude-code
 
-The conversion took Claude Code over 4 hours to complete. This includes the successful passing of all unit and integration tests. See boom_py/TEST_SUMMARY.md for details. The converted python codebase resides under boom_py folder.
+### Conversion Process: 
+* Step 1 - use Claude Code (together with Opus 4 LLM) to analyze an existing project's codebase, then ask it to put together a comprehensive refactoring plan to refactor into microservices.
+* Step 2 - developer verifies the refactoring plan and modifies the plan as needed. Developer could use Claude Code and iterate through this process. UI mocks could be provided, if we need the UI to look a certain way.
+* Step 3 - use this refactoring plan (see [MICROSERVICES_REFACTORING_PLAN.md](MICROSERVICES_REFACTORING_PLAN.md)) in Claude Code (together with Claude Opus 4 LLM) to implement all phases in the plan.
 
+### Conversion Results
+* The refactoring effort took Claude Code about 5 hours to complete
+* The original codebase was refactored into 10 microservices, each with its own Dockerfile. These 10 microservices reside under microservices/ folder.
 
-## Running the code
-See boom_py/README.md
+  1. ✅ rng-service (Random Number Generation)
+  2. ✅ linalg-service (Linear Algebra)
+  3. ✅ optimization-service
+  4. ✅ mcmc-service (MCMC Sampling)
+  5. ✅ statistical-models-service
+  6. ✅ glm-service (GLM)
+  7. ✅ time-series-service
+  8. ✅ mixture-models-service
+  9. ✅ special-functions-service
+  10. ✅ statistical-utilities-service
+
+## All prompts issued to Claude Code
+The complete list of prompts issued to Clause Code is listed below (note that due to complexity of the codebase, we converted 2 services at a time. This allowed us to stop and evaludated the services before continuing the):
+
+> we're planning to refactor the existing codebase into modular microservices. Each microservice will be dockerized and run in its own container. Each microservice will exist in a separate git repo. You're an expert in microservices architecture, come up with a design and a plan on how to refactor the current codebase to support this effort. Save this plan under MICROSERVICES_REFACTORING_PLAN.md
+
+> Go ahead and implement the first 2 microservices in @MICROSERVICES_REFACTORING_PLAN.md . Put all microservices git repos under microservices directory. Make sure each microsservice has sufficient unit test coverage.
+
+> Implement the next 2 microservices
+
+> Implement the next 2 microservices
+
+> Implement the next 2 microservices
+
+> Implement the last 2 microservices
