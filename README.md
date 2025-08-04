@@ -10,7 +10,7 @@ The purpose of this proof of concept is to find out if an LLM can take an existi
 * Step 2 - developer verifies the refactoring plan and modifies the plan as needed. Developer could use Claude Code and iterate through this process until the plan is ready.
 * Step 3 - use this refactoring plan (see [MICROSERVICES_REFACTORING_PLAN.md](MICROSERVICES_REFACTORING_PLAN.md)) in Claude Code (together with Claude Opus 4 LLM) to implement all phases in the plan.
 
-### Conversion Results
+### PoC Results
 * The refactoring effort took Claude Code about 5 hours to complete
 * The original codebase was refactored into 10 microservices, each with its own Dockerfile. These 10 microservices reside under microservices/ folder.
 
