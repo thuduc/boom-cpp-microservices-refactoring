@@ -8,7 +8,7 @@ The purpose of this proof of concept is to find out if an LLM can take an existi
 
 ### Conversion Process: 
 * Step 1 - use Claude Code (together with Opus 4 LLM) to analyze an existing project's codebase, then ask it to put together a comprehensive refactoring plan to refactor into microservices.
-* Step 2 - developer verifies the refactoring plan and modifies the plan as needed. Developer could use Claude Code and iterate through this process. UI mocks could be provided, if we need the UI to look a certain way.
+* Step 2 - developer verifies the refactoring plan and modifies the plan as needed. Developer could use Claude Code and iterate through this process until the plan is ready.
 * Step 3 - use this refactoring plan (see [MICROSERVICES_REFACTORING_PLAN.md](MICROSERVICES_REFACTORING_PLAN.md)) in Claude Code (together with Claude Opus 4 LLM) to implement all phases in the plan.
 
 ### Conversion Results
