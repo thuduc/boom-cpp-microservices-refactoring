@@ -11,7 +11,7 @@ The purpose of this proof of concept is to find out if an LLM can take an existi
 * Step 3 - use this refactoring plan (see [MICROSERVICES_REFACTORING_PLAN.md](MICROSERVICES_REFACTORING_PLAN.md)) in Claude Code (together with Claude Opus 4 LLM) to implement all phases in the plan.
 
 ### PoC Results
-* The refactoring effort took Claude Code about 5 hours to complete
+* The refactoring plan estimated a timeline of 13+ months to complete. It took Claude Code about 5 hours to complete
 * The original codebase was refactored into 10 microservices, each with its own Dockerfile. These 10 microservices reside under microservices/ folder.
 
   1. ✅ rng-service (Random Number Generation)
