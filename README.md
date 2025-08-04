@@ -1,5 +1,4 @@
 ## GenAI Proof of Concept: refactor existing C++ codebase into microservices
-
 The purpose of this proof of concept is to find out if an LLM can take an existing complex codebase and refactor it into microservices. The codebase we will be using is the BOOM C++ library for Bayesian modeling: https://github.com/steve-the-bayesian/BOOM
 
 ### LLM & AI Tool
