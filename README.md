@@ -14,18 +14,11 @@ The purpose of this proof of concept is to find out if an LLM can take an existi
 * The refactoring plan estimated a timeline of 13+ months to complete. It took Claude Code about 5 hours to complete
 * The original codebase was refactored into 10 microservices, each with its own Dockerfile. These 10 microservices reside under microservices/ folder.
 
-  1. ✅ rng-service (Random Number Generation)
-  2. ✅ linalg-service (Linear Algebra)
-  3. ✅ optimization-service
-  4. ✅ mcmc-service (MCMC Sampling)
-  5. ✅ statistical-models-service
-  6. ✅ glm-service (GLM)
-  7. ✅ time-series-service
-  8. ✅ mixture-models-service
-  9. ✅ special-functions-service
-  10. ✅ statistical-utilities-service
+### PoC Assessment
+* See [POC_ASSESSMENT.md](POC_ASSESSMENT.md) for detailed assessment of the generated refactoring implementation plan and also the refactoring implementation.
+* We manually confirmed these findings.
 
-## All prompts issued to Claude Code
+### All prompts issued to Claude Code
 The complete list of prompts issued to Clause Code is listed below (note that due to complexity of the codebase, we converted 2 services at a time. This allowed us to stop and evaludated the services before continuing the):
 
 > we're planning to refactor the existing codebase into modular microservices. Each microservice will be dockerized and run in its own container. Each microservice will exist in a separate git repo. You're an expert in microservices architecture, come up with a design and a plan on how to refactor the current codebase to support this effort. Save this plan under MICROSERVICES_REFACTORING_PLAN.md
